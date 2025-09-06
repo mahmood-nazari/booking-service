@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "53a01ebf-68aa-45e4-a087-200f22c97260",
+		"name": "azki",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19108305"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/slots?page=0&size=10&sort=startTime,asc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/slots?page=0&size=10&sort=startTime,asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"slots"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "sort",
+							"value": "startTime,asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/actuator/health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/actuator/metrics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/metrics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"metrics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/reservations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcGkubXlkaWdpcGF5LmNvbSIsImV4cCI6MTc1NTQ0MjQzMiwiemlkIjoiYXBwIiwidXNlcl9uYW1lIjoiZGlnaWthbGEtdXNlci1pZCIsImF1dGhvcml0aWVzIjoiMCwxLDMsNCw4LDksNzAwLDcwMSw3MDIsNzAzLDcwNCw3MDUsNzA2LDcwOCw3MDksNzEwLDcxMSw3MTIsNzEzLDcxNCw3MTUsNzE2LDcxNyw3MTgsNzE5LDcyMCw2MDAsNzIxLDYwMSw3MjIsNjAyLDcyMyw2MDMsNzI0LDYwNCw3MjUsNjA1LDcyNiw2MDYsNzI3LDYwNyw3MjgsNjA4LDcyOSw2MDksNzMwLDYxMCw3MzEsNjExLDczMiw2MTIsNzMzLDYxMyw3MzQsNjE0LDczNSw2MTUsNzM2LDYxNiw3MzcsNjE3LDczOCw2MTgsNzM5LDYxOSw3NDAsNzQxLDUwMCw3NDIsNTAxLDYyMiw3NDMsNTAyLDYyMyw3NDQsNTAzLDYyNCw3NDUsNTA0LDYyNSw3NDYsNjI2LDc0Nyw2MjcsNzQ4LDYyOCw3NDksNTA4LDYyOSw1MDksNzUwLDYzMCw3NTEsNjMxLDc1Miw1MTEsNjMyLDc1Myw2MzMsNzU0LDUxMyw2MzQsNzU1LDUxNCw2MzUsNzU2LDYzNiw3NTcsNTE2LDYzNyw3NTgsNTE3LDYzOCw3NTksNTE4LDYzOSw1MTksNzYwLDY0MCw3NjEsNTIwLDY0MSw3NjIsNDAwLDY0Miw3NjMsNDAxLDY0Myw3NjQsNDAyLDY0NCw3NjUsNDAzLDUyNCw2NDUsNzY2LDQwNCw2NDYsNzY3LDQwNSw2NDcsNzY4LDQwNiw1MjcsNjQ4LDQwNyw1MjgsNjQ5LDQwOCw1MjksNDA5LDY1MCw1MzAsNjUxLDQxMCw1MzEsNjUyLDQxMSw1MzIsNjUzLDQxMiw1MzMsNjU0LDQxMyw1MzQsNjU1LDQxNCw1MzUsNjU2LDQxNSw1MzYsNjU3LDQxNiw1MzcsNjU4LDQxNyw1MzgsNjU5LDQxOCw1MzksNDE5LDY2MCw1NDAsNjYxLDQyMCw1NDEsNjYyLDMwMCw0MjEsNTQyLDY2MywzMDEsNDIyLDU0Myw2NjQsMzAyLDQyMyw1NDQsNjY1LDMwMyw0MjQsNTQ1LDY2NiwzMDQsNDI1LDU0Niw2NjcsMzA1LDQyNiw1NDcsNjY4LDMwNiw0MjcsNTQ4LDY2OSw0MjgsNTQ5LDMwOCw0MjksMzA5LDY3MCw2NzEsNDMwLDU1MSw2NzIsMzEwLDQzMSw1NTIsNjczLDMxMSw0MzIsNTUzLDY3NCwzMTIsNDMzLDY3NSwzMTMsNDM0LDY3NiwzMTQsNDM1LDU1Niw2NzcsMzE1LDQzNiw1NTcsNjc4LDMxNiw0MzcsNjc5LDMxNyw0MzgsNTU5LDMxOCw0MzksMzE5LC0xLC0yLC0zLDY4MCw1NjAsNjgxLDQ0MCw1NjEsNjgyLDMyMCw0NDEsNTYyLDY4MywyMDAsMzIxLDQ0Miw1NjMsNjg0LDIwMSwzMjIsNDQzLDU2NCw2ODUsMjAyLDMyMyw0NDQsNTY1LDY4NiwyMDMsMzI0LDQ0NSw1NjYsNjg3LDIwNCwzMjUsNTY3LDY4OCwyMDUsMzI2LDU2OCw2ODksMjA2LDMyNyw1NjksMjA3LDMyOCw0NDksMjA4LDMyOSwyMDksNjkwLDU3MCw2OTEsNDUwLDU3MSw2OTIsMzMwLDQ1MSw2OTMsMjEwLDMzMSw0NTIsNTczLDY5NCwyMTEsMzMyLDQ1Myw1NzQsNjk1LDIxMiwzMzMsNDU0LDU3NSw2OTYsMjEzLDMzNCw0NTUsNTc2LDY5NywyMTQsMzM1LDU3Nyw2OTgsMjE1LDMzNiw1NzgsNjk5LDIxNiwzMzcsNDU4LDU3OSwyMTcsMzM4LDQ1OSwyMTgsMzM5LDIxOSw1ODAsNDYwLDU4MSwzNDAsNDYxLDU4MiwyMjAsMzQxLDQ2Miw1ODMsMTAwLDIyMSwzNDIsNDYzLDU4NCwxMDEsMjIyLDM0Myw0NjQsNTg1LDEwMiwyMjMsMzQ0LDQ2NSw1ODYsMTAzLDIyNCwzNDUsNDY2LDU4NywxMDQsMjI1LDM0Niw0NjcsNTg4LDEwNSwyMjYsMzQ3LDQ2OCw1ODksMTA2LDIyNywzNDgsNDY5LDIyOCwzNDksMTA4LDIyOSwxMDksNTkwLDQ3MCw1OTEsMzUwLDQ3MSw1OTIsMjMwLDM1MSw0NzIsNTkzLDExMCwyMzEsMzUyLDQ3Myw1OTQsMTExLDIzMiwzNTMsNDc0LDU5NSwxMTIsMjMzLDM1NCw0NzUsNTk2LDExMywyMzQsMzU1LDQ3Niw1OTcsMTE0LDIzNSwzNTYsNDc3LDU5OCwxMTUsMjM2LDM1Nyw0NzgsNTk5LDExNiwyMzcsMzU4LDQ3OSwxMTcsMjM4LDM1OSwxMTgsMjM5LDExOSwxMCwxMSwxMiwxMywxNCwxNSwxNyw0ODAsMzYwLDQ4MSwyNDAsMzYxLDQ4MiwxMjAsMjQxLDM2Miw0ODMsMTIxLDI0MiwzNjMsNDg0LDEyMiwyNDMsMzY0LDQ4NSwxMjMsMjQ0LDM2NSw0ODYsMTI0LDI0NSwzNjYsNDg3LDEyNSwyNDYsMzY3LDQ4OCwxMjYsMjQ3LDM2OCw0ODksMTI3LDI0OCwzNjksMjQ5LDEyOSwyMiwyMywyNCwyNSwyNiwyNywyOCwyOSw0OTAsMjUwLDM3MSw0OTIsMTMwLDI1MSwzNzIsNDkzLDEzMSwyNTIsMzczLDQ5NCwxMzIsMjUzLDM3NCw0OTUsMTMzLDI1NCwzNzUsMTM0LDI1NSwzNzYsNDk3LDEzNSwyNTYsMzc3LDQ5OCwxMzYsMjU3LDM3OCw0OTksMTM3LDI1OCwzNzksMTM4LDEzOSwzMCwzMiwzNSwzNiwzNywzOCwzOSwzODAsMjYwLDM4MSwyNjEsMzgyLDE0MSwyNjIsMzgzLDE0MiwyNjMsMzg0LDE0MywyNjQsMzg1LDE0NCwyNjUsMzg2LDE0NSwyNjYsMzg3LDE0NiwyNjcsMzg4LDE0NywzODksMTQ4LDI2OSwxNDksNDAsNDEsNDIsNDYsNDcsNDgsNDksMzkwLDI3MCwzOTEsMTUwLDI3MSwzOTIsMTUxLDI3MiwzOTMsMTUyLDI3MywzOTQsMTUzLDI3NCwzOTUsMTU0LDI3NSwzOTYsMTU1LDI3NiwzOTcsMTU2LDI3NywzOTgsMTU3LDI3OCwzOTksMTU4LDI3OSwxNTksNTAsNTEsNTIsNTMsNTQsNTYsNTcsNTgsNTksMjgwLDE2MCwyODEsMTYxLDE2MiwxNjMsMTY0LC0xMDEsMTY1LDI4NiwxNjYsMjg3LDI4OCwxNjgsMjg5LDE2OSw2MCw2MSw2Miw2Myw2NCw2NSw2OCw2OSwyOTAsMTcwLDI5MSwxNzEsMjkyLDE3MiwyOTMsMjk0LDE3NCwyOTUsMTc1LDI5NiwxNzYsMjk3LDE3NywyOTgsMjk5LDE3OSw3MCw3MSw3Miw3Myw3NCw3NSw3Niw3OCw3OSwxODAsMTgxLDE4MiwxODMsMTg0LDE4NSwxODYsMTg3LDE4OCwxODksODAsODEsODIsODMsODQsODUsODYsODcsODgsODksMTkwLDE5MSwxOTIsMTkzLDE5NCwxOTUsMTk2LDE5NywxOTgsMTk5LC0yNTEsOTAsOTEsOTIsOTMsOTQsOTUsOTYsOTcsOTgsOTksLTE1MSIsImNsaWVudF9pZCI6ImRpZ2lwYXktY2xpZW50LWlkIn0.dY1lUMZmoJFjKKS7jJeHgUv8IEhJo91GbhJoDRPWTHWPdje4EQMfPQQKR3Cjyv3pUOa2X9z6UKA41uSRnXq0bOT3_631zYc4NgwU8TNImUpT0Ss4e9IBW77sgbTVNG3172ujppJ22kt3TN52TOcyex85FfL53NIUj7_LdwiM81tYKnu8uVmW_ZT2yxNljjFVumX0rkQULcoDsjNuOGcbhXHJeylLF-aB07KVXpEq_Z509Az0xgspc_9DITQOi4ygD43fXGLiU38cp8MDz4yi0spTDn2zcHFb6yCGJhU2d0puM18iOxjJRmnNJxLQGLAkfUpP8hicyLuCpuZXiJe20w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer $TOKEN"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"slotId\":1}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/reservations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"reservations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/reservations/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer $TOKEN"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/reservations/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"reservations",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
