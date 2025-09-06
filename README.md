@@ -85,6 +85,8 @@ docker compose exec -T mysql sh -c 'mysql -ubooking -pbooking booking < /tmp/dat
 
 ## نمونهٔ درخواست‌ها (cURL)
 
+execute in terminal
+
 ### 1) لاگین و دریافت توکن
 
 ```bash
@@ -181,9 +183,6 @@ curl -u admin:1234 \
 docker compose restart grafana
 ```
 
-curl -u admin:admin http://localhost:3000/api/datasources | jq '.[] | {name,uid}'
-
-
 ## allert-manager
 برای این سرویس باید تعداد خطاهای شما در یک دقیقه بصورت مداوم بالا برود و سپس با توجه به کانفیگی که انجام شده، یک بات برای اینکار درست شده و در تلگرام به چت‌آی‌دی که در فایل کانفیگ گذاشته شده پیام میده. در حال حاضر چت ‌ای‌دی خودم اونجا ست شده است.
-# booking-service
+
