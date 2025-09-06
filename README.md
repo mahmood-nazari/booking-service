@@ -154,7 +154,9 @@ histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket[5m])) by (
 
 monitoring/grafana/dashboards/booking-grafana-dashboard.json
 
-فایل جیسون رو کپی کنید در جای دلخواه و سپس با استفاده از کامند زیر گرافانا را ریستارت کنید
+فایل جیسون رو کپی کنید در جای دلخواه
+سپس ازین مسیر حذفش کنید 
+درنهایت با استفاده از کامند زیر گرافانا را ریستارت کنید
 ```bash
 docker compose restart grafana
 ```
