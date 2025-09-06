@@ -1,0 +1,33 @@
+groups:
+  - name: booking-http
+    interval: 30s
+    rules:
+      - record: job:http:rps
+        expr: sum(rate(http_server_requests_seconds_count[1m]))
+      - record: job:http:latency:avg
+        expr: sum(rate(http_server_requests_seconds_sum[5m])) / sum(rate(http_server_requests_seconds_count[5m]))
+      - record: job:http:errors_5xx:rps
+        expr: sum(rate(http_server_requests_seconds_count{status=~"5.."}[5m]))
+      - record: job:http:latency:p95
+        expr: histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket[5m])) by (le))
+
+  - name: booking-alerts
+    interval: 30s
+    rules:
+        - alert: HighErrorRateSlots
+          expr: |
+            (
+              (
+                sum(rate(http_server_requests_seconds_count{uri="/api/slots",status=~"5.."}[5m]))
+                OR
+                sum(rate(http_server_requests_seconds_count{uri="/api/slots",outcome="SERVER_ERROR"}[5m]))
+              )
+              /
+              clamp_min(sum(rate(http_server_requests_seconds_count{uri="/api/slots"}[5m])), 1e-9)
+            ) * 100 > 1
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "High 5xx error rate on /api/slots"
+            description: "5xx error rate for /api/slots is above 1% for more than 1 minutes."

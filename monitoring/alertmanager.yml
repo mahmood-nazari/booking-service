@@ -1,0 +1,12 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: 'telegram-notifications'
+
+receivers:
+  - name: 'telegram-notifications'
+    telegram_configs:
+      - bot_token: '7617883964:AAGa8YU7jOeesl7-K7kApg29XnGl8zr7_C8'
+        chat_id: 762914793
+        send_resolved: true

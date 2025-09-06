@@ -1,0 +1,95 @@
+{
+  "title": "Booking Service — Overview",
+  "uid": "booking-observability",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 2,
+  "tags": ["spring-boot", "prometheus", "booking"],
+  "refresh": "10s",
+  "time": { "from": "now-6h", "to": "now" },
+  "panels": [
+    {
+      "type": "stat",
+      "title": "RPS (all)",
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "expr": "job:http:rps", "legendFormat": "rps" } ],
+      "fieldConfig": { "defaults": { "unit": "req/s" } }
+    },
+    {
+      "type": "stat",
+      "title": "p95 latency (all)",
+      "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "expr": "job:http:latency:p95", "legendFormat": "p95" } ],
+      "fieldConfig": { "defaults": { "unit": "s" } }
+    },
+    {
+      "type": "stat",
+      "title": "5xx error rate",
+      "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        { "expr": "sum(rate(http_server_requests_seconds_count{uri=\"/api/slots\",status=~\"5..\"}[5m]))", "legendFormat": "5xx" },
+        { "expr": "sum(rate(http_server_requests_seconds_count{uri=\"/api/slots\",status=~\"4..\"}[5m]))", "legendFormat": "4xx" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "req/s" } }
+    },
+    {
+      "type": "stat",
+      "title": "Latency (avg)",
+      "gridPos": { "h": 4, "w": 6, "x": 18, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "expr": "job:http:latency:avg", "legendFormat": "avg" } ],
+      "fieldConfig": { "defaults": { "unit": "s" } }
+    },
+
+    { "type": "timeseries", "title": "HTTP RPS by URI",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "expr": "sum by (uri) (rate(http_server_requests_seconds_count[1m]))", "legendFormat": "{{uri}}" } ]
+    },
+    { "type": "timeseries", "title": "Latency (avg) by URI",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [ { "expr": "sum by (uri) (rate(http_server_requests_seconds_sum[5m])) / sum by (uri) (rate(http_server_requests_seconds_count[5m]))", "legendFormat": "{{uri}}" } ],
+      "fieldConfig": { "defaults": { "unit": "s" } }
+    },
+
+    { "type": "timeseries", "title": "Latency — /api/slots (avg, p95)",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 12 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        { "expr": "sum(rate(http_server_requests_seconds_sum{uri=\"/api/slots\"}[5m])) / sum(rate(http_server_requests_seconds_count{uri=\"/api/slots\"}[5m]))", "legendFormat": "avg" },
+        { "expr": "histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket{uri=\"/api/slots\"}[5m])) by (le))", "legendFormat": "p95" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "s" } }
+    },
+    { "type": "timeseries", "title": "Error rate — /api/slots",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 12 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        { "expr": "sum(rate(http_server_requests_seconds_count{uri=\"/api/slots\",status=~\"5..\"}[5m]))", "legendFormat": "5xx" },
+        { "expr": "sum(rate(http_server_requests_seconds_count{uri=\"/api/slots\",status=~\"4..\"}[5m]))", "legendFormat": "4xx" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "req/s" } }
+    },
+
+    { "type": "gauge", "title": "Cache Hit Ratio (freeSlots)",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 16 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        { "expr": "sum(rate(cache_gets_total{cache=~\"freeSlots.*\",result=\"hit\"}[5m])) / clamp_min(sum(rate(cache_gets_total{cache=~\"freeSlots.*\"}[5m])), 1)", "legendFormat": "hit ratio" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "percentunit", "min": 0, "max": 1 } }
+    },
+    { "type": "gauge", "title": "JVM Heap Used (%)",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        { "expr": "100 * sum(jvm_memory_used_bytes{area=\"heap\"}) / sum(jvm_memory_max_bytes{area=\"heap\"})", "legendFormat": "heap used %" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "percent" } }
+    }
+  ]
+}
